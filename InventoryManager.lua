@@ -2,6 +2,7 @@ local inv = {}
 
 function inv.PickUpItem(player, tool, slot, inv, invm)
 	if slot ~= nil then
+		tool:SetAttribute("Collected", true)
 		invm.SetSelectorPos(player, inv, invm, slot:GetAttribute("Id"), false)
 		slot:SetAttribute("Amount", slot:GetAttribute("Amount")+1)
 		slot:SetAttribute("Item", tool.ToolTip)
