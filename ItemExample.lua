@@ -4,9 +4,12 @@ local Players = game.Players
 local player = Players.LocalPlayer
 local rs = game:GetService("ReplicatedStorage")
 local Inventory = require(rs.InventoryManager)
+tool:SetAttribute("Collected", false)
 
 local function PickUp()
-	Inventory.PickUpItem(player, tool, Inventory.getFirstSlot(player.PlayerGui.GameUi.Inventory:GetChildren()), player.PlayerGui.GameUi.Inventory, Inventory)
+	if not tool:GetAttribute("Collected") then
+		Inventory.PickUpItem(player, tool, Inventory.getFirstSlot(player.PlayerGui.GameUi.Inventory:GetChildren()), player.PlayerGui.GameUi.Inventory, Inventory)
+	end
 end
 
 tool.Equipped:Connect(PickUp)
